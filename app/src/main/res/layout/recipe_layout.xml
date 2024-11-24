@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@{recipe.image}" />
+            android:src="@{recipe.strMealThumb}" />
 
         <TextView
             android:id="@+id/recipeTitleTextView"
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toEndOf="@id/recipeImageView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{recipe.name}" />
+            android:text="@{recipe.strMeal}" />
 
         <TextView
             android:id="@+id/recipeCategoryTextView"
@@ -44,7 +44,7 @@
             app:layout_constraintStart_toStartOf="@id/recipeTitleTextView"
             app:layout_constraintTop_toBottomOf="@id/recipeTitleTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{recipe.category}" />
+            android:text="@{recipe.strCategory}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
