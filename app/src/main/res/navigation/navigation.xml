@@ -2,5 +2,22 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation">
+    <fragment
+        android:id="@+id/recipeListFragment"
+        android:name="com.example.recipeappstep1.RecipeFragment"
+        android:label="Recipe List">
+        <action
+            android:id="@+id/action_recipeList_to_detail"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.example.recipeappstep1.RecipeDetailFragment"
+        android:label="Recipe Detail">
+        <argument
+            android:name="recipe"
+            app:argType="com.example.recipeapp.Recipe" />
+    </fragment>
 
 </navigation>
