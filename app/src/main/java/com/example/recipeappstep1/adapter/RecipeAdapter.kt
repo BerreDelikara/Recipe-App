@@ -1,6 +1,10 @@
 package com.example.recipeappstep1.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.recipeappstep1.model.Recipe
 
 class RecipeAdapter(private val onClick: (Int) -> Unit) :
     ListAdapter<Recipe, RecipeAdapter.RecipeViewHolder>(RecipeDiffCallback()) {

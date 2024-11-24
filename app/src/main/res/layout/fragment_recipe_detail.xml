@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:src="@{recipe.image}" />
 
-        <!-- Recipe Name -->
+
         <TextView
             android:id="@+id/recipeNameTextView"
             android:layout_width="wrap_content"
@@ -37,7 +37,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Ingredients -->
         <TextView
             android:id="@+id/ingredientsTextView"
             android:layout_width="wrap_content"

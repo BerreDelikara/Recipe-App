@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_recipeListFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
+        <action
+            android:id="@+id/action_recipeListFragment_self"
+            app:destination="@id/recipeListFragment" />
     </fragment>
 
 
