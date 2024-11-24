@@ -1,4 +1,4 @@
-package com.example.recipeappstep1.data
+package com.example.recipeappstep1.network
 
 import com.example.recipeappstep1.model.Recipe
 import retrofit.Call
