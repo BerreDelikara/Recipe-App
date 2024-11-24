@@ -13,7 +13,8 @@ class RecipeFragment : Fragment() {
     private lateinit var adapter: RecipeAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentRecipeListBinding = DataBindingUtil.inflate(
@@ -29,3 +30,25 @@ class RecipeFragment : Fragment() {
         return binding.root
     }
 }
+
+/*
+class GameFragment: Fragment(){
+    private lateinit var binding: FragmentGameBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate<FragmentGameBinding>(inflater, R.layout.fragment_game, container, false)
+
+        return binding.root
+
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val args = GameFragmentArgs.fromBundle(requireArguments())
+        binding.nameTextView.text = args.playerName
+        super.onViewCreated(view, savedInstanceState)
+    }
+}
+* */
