@@ -10,8 +10,7 @@ import retrofit.*
 class ApiCall {
     fun getRecipe(context: Context, callback: (Recipe) -> Unit) {
 
-        val retrofit: Retrofit = Retrofit.Builder().baseUrl("https://www.themealdb.com/api/json/v1/1/").addConverterFactory(
-            GsonConverterFactory.create()).build()
+        val retrofit: Retrofit = Retrofit.Builder().baseUrl("https://www.themealdb.com/api/json/v1/1/").addConverterFactory(GsonConverterFactory.create()).build()
 
         val service: ApiService = retrofit.create<ApiService>(ApiService::class.java)
 
