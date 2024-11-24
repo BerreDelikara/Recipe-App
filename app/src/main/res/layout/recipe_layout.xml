@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <!-- Recipe Thumbnail -->
+
     <ImageView
         android:id="@+id/recipeImageView"
         android:layout_width="100dp"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- Recipe Title -->
+
     <TextView
         android:id="@+id/recipeTitleTextView"
         android:layout_width="0dp"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Recipe Description -->
+
     <TextView
         android:id="@+id/recipeDescriptionTextView"
         android:layout_width="0dp"

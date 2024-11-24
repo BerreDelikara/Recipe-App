@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/loginFragment">
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.recipeappstep1.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_recipeListFragment"
+            app:destination="@id/recipeListFragment" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/recipeListFragment"
         android:name="com.example.recipeappstep1.RecipeFragment"
-        android:label="Recipe List">
+        android:label="Recipe List"
+        tools:layout="@layout/fragment_recipe_list">
         <action
-            android:id="@+id/action_recipeList_to_detail"
+            android:id="@+id/action_recipeListFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
     </fragment>
+
 
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="com.example.recipeappstep1.RecipeDetailFragment"
-        android:label="Recipe Detail">
-        <argument
-            android:name="recipe"
-            app:argType="com.example.recipeapp.Recipe" />
-    </fragment>
 
+        android:label="Recipe Detail"
+        tools:layout="@layout/fragment_recipe_detail" />
 </navigation>

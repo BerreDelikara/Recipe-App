@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Recipe Image -->
+
     <ImageView
         android:id="@+id/detailRecipeImageView"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Recipe Title -->
+
     <TextView
         android:id="@+id/detailRecipeTitleTextView"
         android:layout_width="0dp"
@@ -25,7 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Recipe Description -->
     <TextView
         android:id="@+id/detailRecipeDescriptionTextView"
         android:layout_width="0dp"
