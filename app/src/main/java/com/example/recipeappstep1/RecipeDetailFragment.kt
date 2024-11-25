@@ -22,7 +22,7 @@ class RecipeDetailFragment : Fragment() {
         )
         viewModel = ViewModelProvider(requireActivity())[RecipeViewModel::class.java]
         viewModel.selectedRecipe.observe(viewLifecycleOwner) { recipe ->
-            binding.recipe = recipe // Use data binding
+            binding.recipe = recipe
         }
         return binding.root
     }

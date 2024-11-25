@@ -20,7 +20,7 @@
         android:id="@+id/categoryFragment"
         android:name="com.example.recipeappstep1.CategoryFragment"
         android:label="Categories"
-        tools:layout="@layout/fragment_category">
+        tools:layout="@layout/fragment_category_list">
         <action
             android:id="@+id/action_categoryFragment_to_recipeListFragment"
             app:destination="@id/recipeListFragment" />

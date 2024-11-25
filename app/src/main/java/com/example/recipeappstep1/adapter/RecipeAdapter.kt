@@ -13,7 +13,7 @@ import com.example.recipeappstep1.RecipeDetailFragment
 import com.example.recipeappstep1.model.Recipe
 
 
-class RecipeAdapter(private val data: MutableList<Recipe>) : RecyclerView.Adapter<RecipeAdapter.ItemViewHolder>() {
+class RecipeAdapter(private val recipes: MutableList<Recipe>) : RecyclerView.Adapter<RecipeAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(val item: View) : RecyclerView.ViewHolder(item) {
         private val recipeNameTextView: TextView = item.findViewById(R.id.recipeTitleTextView)
@@ -49,11 +49,16 @@ class RecipeAdapter(private val data: MutableList<Recipe>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val recipe = data[position]
+        val recipe = recipes[position]
         holder.bind(recipe)
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return recipes.size
+    }
+    fun updateRecipes(newRecipes: List<Recipe>) {
+        recipes.clear()
+        recipes.addAll(newRecipes)
+        notifyDataSetChanged()
     }
 }
