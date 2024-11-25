@@ -12,10 +12,19 @@
         android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_recipeListFragment"
-            app:destination="@id/recipeListFragment" />
+            android:id="@+id/action_loginFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.recipeappstep1.CategoryFragment"
+        android:label="Categories"
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_categoryFragment_to_recipeListFragment"
+            app:destination="@id/recipeListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/recipeListFragment"

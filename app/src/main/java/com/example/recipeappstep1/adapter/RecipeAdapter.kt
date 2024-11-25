@@ -29,19 +29,17 @@ class RecipeAdapter(
         }
     }
 
-    // Creates a new ViewHolder for the recipe item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.recipe_layout, parent, false)
         return RecipeViewHolder(view)
     }
 
-    // Binds data to the ViewHolder
+
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val recipe = recipes[position]
         holder.bind(recipe)
     }
 
-    // Return the number of items in the list
     override fun getItemCount(): Int = recipes.size
 }
