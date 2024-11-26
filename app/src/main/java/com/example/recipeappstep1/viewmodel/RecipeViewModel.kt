@@ -16,7 +16,7 @@ class RecipeViewModel : ViewModel() {
 
     private fun fetchRecipes() {
         try {
-            val recipeList = ApiCall().run()
+            val recipeList = ApiCall().searchCategory()
             _recipes.postValue(recipeList)
         } catch (e: Exception) {
             e.printStackTrace()
