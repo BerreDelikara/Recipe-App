@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeappstep1.R
-import com.example.recipeappstep1.RecipeFragment
+import com.example.recipeappstep1.RecipeListFragment
 
 class CategoryAdapter(private val categories: List<String>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
@@ -20,7 +20,7 @@ class CategoryAdapter(private val categories: List<String>) : RecyclerView.Adapt
         init {
             itemView.setOnClickListener {
                 val context = itemView.context
-                val intent = Intent(context, RecipeFragment::class.java)
+                val intent = Intent(context, RecipeListFragment::class.java)
                 intent.putExtra(CATEGORY_KEY, category)
                 context.startActivity(intent)
             }

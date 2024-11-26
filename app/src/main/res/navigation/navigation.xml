@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/recipeListFragment"
-        android:name="com.example.recipeappstep1.RecipeFragment"
+        android:name="com.example.recipeappstep1.RecipeListFragment"
         android:label="Recipe List"
         tools:layout="@layout/fragment_recipe_list">
         <action
