@@ -1,20 +1,32 @@
-package com.example.recipeappstep1
-
+import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.recipeappstep1.LoginViewModel
+import com.example.recipeappstep1.R
+import com.example.recipeappstep1.databinding.FragmentLoginBinding
 
-class LoginViewModel : ViewModel() {
-    val username = MutableLiveData<String>()
-    val password = MutableLiveData<String>()
-    val isLoggedIn = MutableLiveData<Boolean>()
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    fun login() {
+    private lateinit var binding: FragmentLoginBinding
+    private val viewModel: LoginViewModel by viewModels()
 
-        if (username.value == "deniz" && password.value == "berre") {
-            isLoggedIn.value = true
-        } else {
-            isLoggedIn.value = false
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentLoginBinding.bind(view)
+        binding.viewModel = LoginViewModel()
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
+            if (isLoggedIn) {
+
+                findNavController().navigate(R.id.action_loginFragment_to_categoryFragment)
+            } else {
+
+                Toast.makeText(context, "Invalid credentials", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
