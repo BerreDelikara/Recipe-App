@@ -22,7 +22,7 @@
         android:label="Categories"
         tools:layout="@layout/fragment_category_list">
         <action
-            android:id="@+id/action_categoryListFragment_to_recipeListFragment"
+            android:id="@+id/action_categoryFragment_to_recipeListFragment"
             app:destination="@id/recipeListFragment" />
     </fragment>
 
