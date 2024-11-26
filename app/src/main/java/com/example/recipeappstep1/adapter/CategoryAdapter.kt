@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeappstep1.R
 import com.example.recipeappstep1.fragment.RecipeListFragment
+import com.example.recipeappstep1.model.Category
 
-class CategoryAdapter(private val categories: List<String>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(private val categories: MutableList<Category>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val categoryTextView: TextView = itemView.findViewById(R.id.categoryNameTextView)
