@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeappstep1.R
 
 class CategoryListFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreateView(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.fragment_category_list)
