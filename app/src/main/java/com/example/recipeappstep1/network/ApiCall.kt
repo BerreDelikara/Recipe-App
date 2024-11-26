@@ -1,5 +1,4 @@
 package com.example.recipeappstep1.network
-
 import com.example.recipeappstep1.model.Category
 import com.example.recipeappstep1.model.Ingredient
 import com.example.recipeappstep1.model.Recipe

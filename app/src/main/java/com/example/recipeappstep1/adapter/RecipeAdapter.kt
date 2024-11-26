@@ -38,7 +38,7 @@ class RecipeAdapter(private val recipes: MutableList<Recipe>) : RecyclerView.Ada
 
             Glide.with(itemView.context)
                 .load(recipe.strMealThumb)
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .into(recipeImageView)
         }
     }
