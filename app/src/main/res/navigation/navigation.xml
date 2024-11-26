@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.recipeappstep1.LoginFragment"
+        android:name="com.example.recipeappstep1.fragment.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
@@ -18,11 +18,11 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.recipeappstep1.CategoryFragment"
+        android:name="com.example.recipeappstep1.fragment.CategoryListFragment"
         android:label="Categories"
         tools:layout="@layout/fragment_category_list">
         <action
-            android:id="@+id/action_categoryFragment_to_recipeListFragment"
+            android:id="@+id/action_categoryListFragment_to_recipeListFragment"
             app:destination="@id/recipeListFragment" />
     </fragment>
 
