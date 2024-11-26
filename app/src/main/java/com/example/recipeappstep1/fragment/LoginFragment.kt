@@ -1,10 +1,12 @@
+package com.example.recipeappstep1.fragment
+
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.recipeappstep1.LoginViewModel
+import com.example.recipeappstep1.viewmodel.LoginViewModel
 import com.example.recipeappstep1.R
 import com.example.recipeappstep1.databinding.FragmentLoginBinding
 

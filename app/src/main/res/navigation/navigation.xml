@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/recipeListFragment"
-        android:name="com.example.recipeappstep1.RecipeListFragment"
+        android:name="com.example.recipeappstep1.fragment.RecipeListFragment"
         android:label="Recipe List"
         tools:layout="@layout/fragment_recipe_list">
         <action
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="com.example.recipeappstep1.RecipeDetailFragment"
+        android:name="com.example.recipeappstep1.fragment.RecipeDetailFragment"
 
         android:label="Recipe Detail"
         tools:layout="@layout/fragment_recipe_detail" />

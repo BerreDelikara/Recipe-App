@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeappstep1.R
-import com.example.recipeappstep1.RecipeListFragment
+import com.example.recipeappstep1.fragment.RecipeListFragment
 
 class CategoryAdapter(private val categories: List<String>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 

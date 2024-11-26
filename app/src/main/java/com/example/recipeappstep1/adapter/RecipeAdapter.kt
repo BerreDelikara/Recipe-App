@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.recipeappstep1.R
-import com.example.recipeappstep1.RecipeDetailFragment
+import com.example.recipeappstep1.fragment.RecipeDetailFragment
 import com.example.recipeappstep1.model.Recipe
 
 

@@ -1,3 +1,5 @@
+package com.example.recipeappstep1.fragment
+
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment

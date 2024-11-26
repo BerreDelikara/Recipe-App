@@ -1,4 +1,4 @@
-package com.example.recipeappstep1
+package com.example.recipeappstep1.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData

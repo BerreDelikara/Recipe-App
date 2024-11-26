@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.recipeappstep1.model.Category
-import com.example.recipeappstep1.model.Recipe
 import com.example.recipeappstep1.network.ApiCall
 
 class CategoryViewModel:ViewModel() {

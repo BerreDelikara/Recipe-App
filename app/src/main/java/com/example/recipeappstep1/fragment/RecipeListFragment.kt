@@ -1,4 +1,4 @@
-package com.example.recipeappstep1
+package com.example.recipeappstep1.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.example.recipeappstep1.R
 import com.example.recipeappstep1.adapter.RecipeAdapter
 import com.example.recipeappstep1.databinding.FragmentRecipeListBinding
 import com.example.recipeappstep1.viewmodel.RecipeViewModel
