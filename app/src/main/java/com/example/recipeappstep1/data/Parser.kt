@@ -1,3 +1,5 @@
+import android.content.Context
+import com.example.recipeappstep1.R
 import com.example.recipeappstep1.model.Category
 import com.example.recipeappstep1.model.Ingredient
 import com.example.recipeappstep1.model.Recipe
@@ -5,36 +7,25 @@ import org.json.JSONObject
 
 class Parser() {
 
-    fun parseAllRecipesInCategory(categoryName: String): List<Recipe> {
-
-//        var jsonString = context.resources.openRawResource(context.resources.getIdentifier(categoryName, "raw", context.packageName)).bufferedReader().use {
-//            it.readText() }
-
-        val jsonString = "idk"
+    fun parseAllRecipesInCategory(categoryName: String, context: Context?): List<Recipe> {
+        var jsonString = context?.resources?.let { context.resources.openRawResource(it.getIdentifier(categoryName.lowercase(), "raw", context.packageName)).bufferedReader().use { it.readText() } }
 
 
-        val mealsArray = JSONObject(jsonString).getJSONArray("meals")
+
+        val recipesArray = JSONObject(jsonString).getJSONArray("meals")
         val recipes = mutableListOf<Recipe>()
 
 
-        for (i in 0 until mealsArray.length()) {
-            val mealObject = mealsArray.getJSONObject(i)
-            val ingredientList = mutableListOf<Ingredient>()
-            for (j in 1..20) {
-                val ingName = mealObject.optString("strIngredient$j", "").trim()
-                val measure = mealObject.optString("strMeasure$j", "").trim()
-                if (ingName.isNotEmpty()) {
-                    ingredientList.add(Ingredient(ingName, measure))
-                }
-            }
+        for (i in 0 until recipesArray.length()) {
+            val recipeObject = recipesArray.getJSONObject(i)
 
             val recipe = Recipe(
-                idMeal = mealObject.getInt("idMeal"),
-                strMeal = mealObject.getString("strMeal"),
-                strCategory = mealObject.getString("strCategory"),
-                strInstructions = mealObject.getString("strInstructions"),
-                strMealThumb = mealObject.getString("strMealThumb"),
-                ingredients = ingredientList
+                idMeal = recipeObject.getInt("idMeal"),
+                strMeal = recipeObject.getString("strMeal"),
+                strMealThumb = recipeObject.getString("strMealThumb"),
+                ingredients = null,
+                strInstructions = null,
+                strCategory = null
             )
             recipes.add(recipe)
         }
@@ -42,7 +33,7 @@ class Parser() {
         return recipes
     }
 
-    fun parseCategories(): List<Category> {
+    fun parseCategories(context: Context): List<Category> {
 //        val jsonString = context.resources.openRawResource(R.raw.categories).bufferedReader().use {
 //            it.readText() }
 
@@ -64,15 +55,15 @@ class Parser() {
         return categoryList
     }
 
-    fun parseRecipe(recipeName: String, categoryName: String): Recipe? {
-        val recipes = parseAllRecipesInCategory(categoryName)
-
-        for (i in 0 until recipes.size) {
-            if (recipes[i].strMeal == recipeName) {
-                return recipes[i]
-            }
-        }
-
-        return null
-    }
+//    fun parseRecipe(recipeName: String, categoryName: String): Recipe? {
+//        val recipes = parseAllRecipesInCategory(categoryName)
+//
+//        for (i in 0 until recipes.size) {
+//            if (recipes[i].strMeal == recipeName) {
+//                return recipes[i]
+//            }
+//        }
+//
+//        return null
+//    }
 }

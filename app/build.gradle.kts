@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("androidx.navigation.safeargs")
     id("com.google.gms.google-services")
 }
 
@@ -38,6 +39,12 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
+    sourceSets {
+        getByName("main") {
+            java.srcDir("build/generated/source/navigation-args")
+        }
+    }
 }
 
 dependencies {
@@ -51,6 +58,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.0")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

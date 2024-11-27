@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeappstep1.R
-import com.example.recipeappstep1.fragment.RecipeListFragment
+import com.example.recipeappstep1.fragment.RecipeDetailFragment
 import com.example.recipeappstep1.model.Category
 
-class CategoryAdapter(private val categories: List<Category>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryListAdapter(private val categories: List<Category>, private val onCategoryClick: (Category) -> Unit) : RecyclerView.Adapter<CategoryListAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val categoryTextView: TextView = itemView.findViewById(R.id.categoryNameTextView)
@@ -20,10 +20,8 @@ class CategoryAdapter(private val categories: List<Category>) : RecyclerView.Ada
 
         init {
             itemView.setOnClickListener {
-                val context = itemView.context
-                val intent = Intent(context, RecipeListFragment::class.java)
+                val intent = Intent(itemView.context, RecipeDetailFragment::class.java)
                 intent.putExtra(CATEGORY_KEY, category)
-                context.startActivity(intent)
             }
         }
 
@@ -41,6 +39,7 @@ class CategoryAdapter(private val categories: List<Category>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
         holder.bind(category)
+        holder.itemView.setOnClickListener { onCategoryClick(category) }
     }
 
     override fun getItemCount(): Int {

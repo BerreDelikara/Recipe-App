@@ -1,5 +1,6 @@
 package com.example.recipeappstep1.fragment
 
+import Parser
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,16 +9,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.example.recipeappstep1.R
-import com.example.recipeappstep1.adapter.RecipeAdapter
+import com.example.recipeappstep1.adapter.RecipeListAdapter
 import com.example.recipeappstep1.databinding.FragmentRecipeListBinding
 import com.example.recipeappstep1.viewmodel.RecipeListViewModel
 
 class RecipeListFragment : Fragment() {
 
     private val recipeViewModel: RecipeListViewModel by activityViewModels()
+    private val args: RecipeListFragmentArgs by navArgs()
     private lateinit var binding: FragmentRecipeListBinding
-    private lateinit var recipeAdapter: RecipeAdapter
+    private lateinit var recipeListAdapter: RecipeListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,14 +31,14 @@ class RecipeListFragment : Fragment() {
         binding.viewModel = recipeViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        recipeAdapter = RecipeAdapter(mutableListOf())
-        binding.recyclerView.adapter = recipeAdapter
+        recipeListAdapter = RecipeListAdapter(Parser().parseAllRecipesInCategory(args.categoryName.toString(),this.context))
+        binding.recyclerView.adapter = recipeListAdapter
 
-        recipeViewModel.recipes.observe(viewLifecycleOwner, Observer { recipes ->
-            recipes?.let {
-                recipeAdapter.updateRecipes(it)
-            }
-        })
+//        recipeViewModel.recipes.observe(viewLifecycleOwner, Observer { recipes ->
+//            recipes?.let {
+//                binding.viewModel.fetchRecipes(args.categoryName)
+//            }
+//        })
 
         return binding.root
     }
