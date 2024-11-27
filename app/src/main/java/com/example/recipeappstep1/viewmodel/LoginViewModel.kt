@@ -1,20 +1,18 @@
 package com.example.recipeappstep1.viewmodel
-
-import androidx.fragment.app.Fragment
+import Parser
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.recipeappstep1.model.Category
 
 class LoginViewModel : ViewModel() {
-    val username = MutableLiveData<String>()
-    val password = MutableLiveData<String>()
-    val isLoggedIn = MutableLiveData<Boolean>()
+    private val _isLoggedIn = MutableLiveData<Boolean>()
+    val isLoggedIn: MutableLiveData<Boolean> get() = _isLoggedIn
 
-    fun login() {
-
-        if (username.value == "deniz" && password.value == "berre") {
-            isLoggedIn.value = true
+    fun login(email: String, password: String) {
+        if (email == "user@gmail.com" && password == "password") {
+            _isLoggedIn.value = true
         } else {
-            isLoggedIn.value = false
+            _isLoggedIn.value = false
         }
     }
 }

@@ -7,16 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipeappstep1.R
 import com.example.recipeappstep1.adapter.CategoryAdapter
 import com.example.recipeappstep1.databinding.FragmentCategoryListBinding
-import com.example.recipeappstep1.viewmodel.CategoryViewModel
 
 class CategoryListFragment : Fragment() {
     private lateinit var binding: FragmentCategoryListBinding
-    private val viewModel: CategoryViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate<FragmentCategoryListBinding>(inflater, R.layout.fragment_category_list, container, false)
@@ -24,13 +21,12 @@ class CategoryListFragment : Fragment() {
 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding.categoryRecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
-
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-
-
         recyclerView.adapter = CategoryAdapter(Parser().parseCategories())
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = CategoryAdapter(Parser().parseCategories()) }
+
     }
 }

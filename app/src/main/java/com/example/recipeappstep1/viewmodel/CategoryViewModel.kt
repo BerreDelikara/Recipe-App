@@ -4,9 +4,7 @@ import Parser
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.recipeappstep1.model.Category
-import com.example.recipeappstep1.network.ApiCall
 
 class CategoryViewModel:ViewModel() {
     private val _categories = MutableLiveData<List<Category>>()
