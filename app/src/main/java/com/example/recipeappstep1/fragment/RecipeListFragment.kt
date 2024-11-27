@@ -11,11 +11,11 @@ import androidx.lifecycle.Observer
 import com.example.recipeappstep1.R
 import com.example.recipeappstep1.adapter.RecipeAdapter
 import com.example.recipeappstep1.databinding.FragmentRecipeListBinding
-import com.example.recipeappstep1.viewmodel.RecipeViewModel
+import com.example.recipeappstep1.viewmodel.RecipeListViewModel
 
 class RecipeListFragment : Fragment() {
 
-    private val recipeViewModel: RecipeViewModel by activityViewModels()
+    private val recipeViewModel: RecipeListViewModel by activityViewModels()
     private lateinit var binding: FragmentRecipeListBinding
     private lateinit var recipeAdapter: RecipeAdapter
 

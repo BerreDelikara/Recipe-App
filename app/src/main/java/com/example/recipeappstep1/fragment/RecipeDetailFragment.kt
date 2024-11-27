@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.recipeappstep1.R
 import com.example.recipeappstep1.databinding.FragmentRecipeDetailBinding
+import com.example.recipeappstep1.viewmodel.RecipeListViewModel
 import com.example.recipeappstep1.viewmodel.RecipeViewModel
 
 class RecipeDetailFragment : Fragment() {
@@ -22,7 +23,7 @@ class RecipeDetailFragment : Fragment() {
             inflater, R.layout.fragment_recipe_detail, container, false
         )
         viewModel = ViewModelProvider(requireActivity())[RecipeViewModel::class.java]
-        viewModel.selectedRecipe.observe(viewLifecycleOwner) { recipe ->
+        viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
             binding.recipe = recipe
         }
         return binding.root

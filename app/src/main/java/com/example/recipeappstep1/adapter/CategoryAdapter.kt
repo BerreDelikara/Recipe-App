@@ -10,11 +10,11 @@ import com.example.recipeappstep1.R
 import com.example.recipeappstep1.fragment.RecipeListFragment
 import com.example.recipeappstep1.model.Category
 
-class CategoryAdapter(private val categories: MutableList<Category>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(private val categories: List<Category>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val categoryTextView: TextView = itemView.findViewById(R.id.categoryNameTextView)
-        private lateinit var category: String
+        private lateinit var category: Category
 
         private val CATEGORY_KEY = "CATEGORY"
 
@@ -27,9 +27,9 @@ class CategoryAdapter(private val categories: MutableList<Category>) : RecyclerV
             }
         }
 
-        fun bind(category: String) {
+        fun bind(category: Category) {
             this.category = category
-            categoryTextView.text = category
+            categoryTextView.text = category.strCategory
         }
     }
 
