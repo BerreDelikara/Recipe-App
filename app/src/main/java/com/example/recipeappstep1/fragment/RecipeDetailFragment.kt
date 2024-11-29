@@ -6,26 +6,44 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.recipeappstep1.R
 import com.example.recipeappstep1.databinding.FragmentRecipeDetailBinding
-import com.example.recipeappstep1.viewmodel.RecipeListViewModel
 import com.example.recipeappstep1.viewmodel.RecipeViewModel
 
+
 class RecipeDetailFragment : Fragment() {
-    private lateinit var viewModel: RecipeViewModel
+    private val viewModel: RecipeViewModel by viewModels()
+    private lateinit var binding: FragmentRecipeDetailBinding
+    private val args: RecipeDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding: FragmentRecipeDetailBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_recipe_detail, container, false
-        )
-        viewModel = ViewModelProvider(requireActivity())[RecipeViewModel::class.java]
-        viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
-            binding.recipe = recipe
-        }
+    ): View {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_recipe_detail, container, false)
+
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.fetchRecipe(args.recipeId)
+
+        viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
+            recipe?.let {
+                binding.recipe = recipe
+                binding.recipeIngredientsTextView.text = recipe.getIngredients()
+                Glide.with(this)
+                    .load(it.strMealThumb)
+                    .into(binding.recipeImageView)
+            }
+        }
+    }
+
 }

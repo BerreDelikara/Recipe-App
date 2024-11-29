@@ -13,11 +13,15 @@ import com.example.recipeappstep1.fragment.RecipeDetailFragment
 import com.example.recipeappstep1.model.Recipe
 
 
-class RecipeListAdapter(private val recipes: List<Recipe>) : RecyclerView.Adapter<RecipeListAdapter.ItemViewHolder>() {
+class RecipeListAdapter(
+    private val recipes: List<Recipe>,
+    private val onRecipeClick: (Recipe) -> Unit
+) : RecyclerView.Adapter<RecipeListAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(val item: View) : RecyclerView.ViewHolder(item) {
+    class ItemViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val recipeNameTextView: TextView = item.findViewById(R.id.recipeTitleTextView)
-        private val recipeCategoryTextView: TextView = item.findViewById(R.id.recipeCategoryTextView)
+        private val recipeCategoryTextView: TextView =
+            item.findViewById(R.id.recipeCategoryTextView)
         private val recipeImageView: ImageView = item.findViewById(R.id.recipeImageView)
 
         private val RECIPE_KEY = "RECIPE"
@@ -27,7 +31,6 @@ class RecipeListAdapter(private val recipes: List<Recipe>) : RecyclerView.Adapte
             item.setOnClickListener {
                 val showDetailIntent = Intent(itemView.context, RecipeDetailFragment::class.java)
                 showDetailIntent.putExtra(RECIPE_KEY, recipe)
-                itemView.context.startActivity(showDetailIntent)
             }
         }
 
@@ -38,19 +41,23 @@ class RecipeListAdapter(private val recipes: List<Recipe>) : RecyclerView.Adapte
 
             Glide.with(itemView.context)
                 .load(recipe.strMealThumb)
-                //.placeholder(R.drawable.placeholder)
                 .into(recipeImageView)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val layout = LayoutInflater.from(parent.context).inflate(R.layout.recipe_layout, parent, false)
+        val layout =
+            LayoutInflater.from(parent.context).inflate(R.layout.recipe_layout, parent, false)
         return ItemViewHolder(layout)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val recipe = recipes[position]
         holder.bind(recipe)
+
+        holder.itemView.setOnClickListener {
+            onRecipeClick(recipe)
+        }
     }
 
     override fun getItemCount(): Int {

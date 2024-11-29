@@ -49,5 +49,9 @@
         android:name="com.example.recipeappstep1.fragment.RecipeDetailFragment"
 
         android:label="Recipe Detail"
-        tools:layout="@layout/fragment_recipe_detail" />
+        tools:layout="@layout/fragment_recipe_detail">
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

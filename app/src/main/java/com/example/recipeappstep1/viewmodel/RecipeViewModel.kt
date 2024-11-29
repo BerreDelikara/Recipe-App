@@ -1,31 +1,25 @@
 package com.example.recipeappstep1.viewmodel
 
-import Parser
-import androidx.lifecycle.LiveData
+import CallApi
 import androidx.lifecycle.MutableLiveData
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipeappstep1.model.Recipe
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class RecipeViewModel(application: Application) : AndroidViewModel(application){
+class RecipeViewModel : ViewModel() {
 
-    private val _recipe = MutableLiveData<Recipe>()
-    val recipe: LiveData<Recipe> get() = _recipe
+    private val _recipe = MutableLiveData<Recipe?>()
+    val recipe: MutableLiveData<Recipe?> get() = _recipe
 
-    /**
-     * Fetch recipe details by ID or name (depending on your API/repository logic)
-     */
-    fun fetchRecipe(recipeName: String, categoryName: String) {
-        viewModelScope.launch {
-            val context = getApplication<Application>()
-            try {
-                val fetchedRecipe = Parser().parseCategories(context)
-                _recipe.postValue(Recipe("ya",null,"ya","ya","ya",10))
-            } catch (e: Exception) {
-                // Handle exceptions
-                e.printStackTrace()
+    fun fetchRecipe(recipeId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val recipe = CallApi().parseRecipe(recipeId)
+
+            withContext(Dispatchers.Main) {
+                _recipe.value = recipe
             }
         }
     }

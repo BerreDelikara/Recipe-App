@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.RecipeAppStep1" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.RecipeAppStep1" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/desaturated_red</item>
+        <item name="colorAccent">@color/dark_cyan</item>
+        <item name="colorScheme">@color/dark_red</item>
     </style>
 
     <style name="Theme.RecipeAppStep1" parent="Base.Theme.RecipeAppStep1" />
