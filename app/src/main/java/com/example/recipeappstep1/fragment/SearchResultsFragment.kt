@@ -40,7 +40,9 @@ class SearchResultsFragment : Fragment() {
                         SearchResultsFragmentDirections.actionSearchResultsFragmentToRecipeDetailsFragment(
                             recipe.idMeal
                         )
-                    findNavController().navigate(action)
+                    if (recipe.idMeal != -1) {
+                        findNavController().navigate(action)
+                    }
                 }
                 layoutManager = LinearLayoutManager(requireContext())
                 this.adapter = adapter

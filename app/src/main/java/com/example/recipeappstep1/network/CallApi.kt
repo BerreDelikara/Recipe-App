@@ -114,8 +114,17 @@ class CallApi {
 
     fun parseSearchResults(searchQuery: String): List<Recipe> {
         var jsonString = makeHttpRequest("search.php?s=$searchQuery")?.toString()
-        val recipesArray = JSONObject(jsonString).getJSONArray("meals")
+
         val recipes = mutableListOf<Recipe>()
+
+        if (jsonString != null) {
+            if (jsonString.equals("{\"meals\":null}")) {
+                recipes.add(Recipe(idMeal = -1, strMeal = "No recipes found", strMealThumb = "", ingredients = null, strInstructions = null, strCategory = null))
+                return recipes
+            }
+        }
+
+        val recipesArray = JSONObject(jsonString).getJSONArray("meals")
 
         for (i in 0 until recipesArray.length()) {
             val recipeObject = recipesArray.getJSONObject(i)
@@ -130,7 +139,6 @@ class CallApi {
             )
             recipes.add(recipe)
         }
-
         return recipes
     }
 }
