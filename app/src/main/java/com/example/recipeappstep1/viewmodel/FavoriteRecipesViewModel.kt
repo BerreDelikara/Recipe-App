@@ -1,27 +1,59 @@
 package com.example.recipeappstep1.viewmodel
 
 import CallApi
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.recipeappstep1.model.Recipe
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.firestore
 
 class FavoriteRecipesViewModel : ViewModel() {
-    private val _recipes = MutableLiveData<List<Recipe>>()
-    val recipes: LiveData<List<Recipe>> get() = _recipes
+    val db = Firebase.firestore
+    private var _recipes = MutableLiveData<MutableList<Recipe>>()
+    val recipes: LiveData<MutableList<Recipe>> get() = _recipes
 
 
-    fun fetchRecipes(categoryName: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val recipeList = CallApi().parseAllRecipesInCategory(categoryName)
+    fun saveFavorite(recipeId: String) {
+        val userId = LoginViewModel().auth.currentUser?.uid ?: return
+        val userFavoritesRef = db.collection("favorites").document(userId)
 
-            withContext(Dispatchers.Main) {
-                _recipes.value = recipeList
+        userFavoritesRef.get().addOnSuccessListener { document ->
+            if (document.exists()) {
+                userFavoritesRef.update("favorites", FieldValue.arrayUnion(recipeId))
+            } else {
+                userFavoritesRef.set(mapOf("favorites" to listOf(recipeId)))
             }
+        }.addOnFailureListener { e ->
+            TODO()
         }
+    }
+
+    fun removeFavorite(recipeId: String) {
+        val userId = LoginViewModel().auth.currentUser?.uid ?: return // Ensure user is logged in
+        val userFavoritesRef = db.collection("favorites").document(userId)
+
+        userFavoritesRef.update("favorites", FieldValue.arrayRemove(recipeId))
+            .addOnFailureListener { e ->
+                TODO()
+            }
+    }
+
+    fun getFavorites() {
+        var favorites = mutableListOf<String>()
+        LoginViewModel().auth.currentUser?.let {
+            db.collection("favorites").document(it.uid)
+                .get()
+                .addOnSuccessListener { result ->
+                    favorites = (result.get("favorites") as? List<String> ?: emptyList()).toMutableList()
+                }
+                .addOnFailureListener { exception ->
+                    Log.w(TAG, "Error getting documents.", exception)
+                }
+        }
+        _recipes.value = CallApi().parseAllRecipeIds(favorites).toMutableList()
     }
 }

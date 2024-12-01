@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.categoryListFragment, R.id.favoriteRecipesFragment, R.id.loginFragment), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.searchRecipesFragment,R.id.categoryListFragment,
+            //R.id.favoriteRecipesFragment, will be implemented later
+            R.id.loginFragment), drawerLayout)
 
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
@@ -56,12 +58,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
+            R.id.nav_search -> {
+                navController.navigate(R.id.searchRecipesFragment)
+            }
             R.id.nav_recipes -> {
-                navController.navigate(R.id.categoryListFragment) // Navigate to RecipesFragment
+                navController.navigate(R.id.categoryListFragment)
             }
-            R.id.nav_favorites -> {
-                navController.navigate(R.id.favoriteRecipesFragment) // Navigate to FavoriteRecipesFragment
-            }
+//            R.id.nav_favorites -> {
+            // will be implemented later
+//                navController.navigate(R.id.favoriteRecipesFragment)
+//            }
             R.id.nav_logout -> {
                 val viewModel: LoginViewModel by viewModels()
                 viewModel.logout()

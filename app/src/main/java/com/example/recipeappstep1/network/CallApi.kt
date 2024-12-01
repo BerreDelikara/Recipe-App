@@ -102,4 +102,35 @@ class CallApi {
         return recipe
 
     }
+
+    fun parseAllRecipeIds(recipeIds: List<String>) : List<Recipe> {
+        val recipes = mutableListOf<Recipe>()
+        for (recipeId in recipeIds) {
+            val recipe = parseRecipe(Integer.parseInt(recipeId))
+            recipes.add(recipe)
+        }
+        return recipes
+    }
+
+    fun parseSearchResults(searchQuery: String): List<Recipe> {
+        var jsonString = makeHttpRequest("search.php?s=$searchQuery")?.toString()
+        val recipesArray = JSONObject(jsonString).getJSONArray("meals")
+        val recipes = mutableListOf<Recipe>()
+
+        for (i in 0 until recipesArray.length()) {
+            val recipeObject = recipesArray.getJSONObject(i)
+
+            val recipe = Recipe(
+                idMeal = recipeObject.optInt("idMeal"),
+                strMeal = recipeObject.optString("strMeal"),
+                strMealThumb = recipeObject.optString("strMealThumb"),
+                ingredients = null,
+                strInstructions = null,
+                strCategory = null
+            )
+            recipes.add(recipe)
+        }
+
+        return recipes
+    }
 }

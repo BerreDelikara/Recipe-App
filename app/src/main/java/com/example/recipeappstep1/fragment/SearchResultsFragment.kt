@@ -6,37 +6,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipeappstep1.R
 import com.example.recipeappstep1.adapter.RecipeListAdapter
-import com.example.recipeappstep1.databinding.FragmentFavoriteRecipesBinding
-import com.example.recipeappstep1.viewmodel.FavoriteRecipesViewModel
+import com.example.recipeappstep1.databinding.FragmentSearchResultsBinding
+import com.example.recipeappstep1.viewmodel.SearchResultsViewModel
 
-class FavoriteRecipesFragment : Fragment() {
+class SearchResultsFragment : Fragment() {
 
-    private val favoriteRecipesViewModel: FavoriteRecipesViewModel by viewModels()
-    private lateinit var binding: FragmentFavoriteRecipesBinding
-
-    // favorites will be implemented in step2
+    private val viewModel: SearchResultsViewModel by activityViewModels()
+    private val args: SearchResultsFragmentArgs by navArgs()
+    private lateinit var binding: FragmentSearchResultsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorite_recipes, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search_results, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        favoriteRecipesViewModel.recipes.observe(viewLifecycleOwner) { recipes ->
+        viewModel.recipes.observe(viewLifecycleOwner) { recipes ->
             binding.recyclerView.apply {
                 val adapter = RecipeListAdapter(recipes) { recipe ->
                     val action =
-                        FavoriteRecipesFragmentDirections.actionFavoriteRecipesFragmentToRecipeDetailFragment(
+                        SearchResultsFragmentDirections.actionSearchResultsFragmentToRecipeDetailsFragment(
                             recipe.idMeal
                         )
                     findNavController().navigate(action)
@@ -46,6 +47,6 @@ class FavoriteRecipesFragment : Fragment() {
             }
         }
 
-        favoriteRecipesViewModel.getFavorites()
+        viewModel.fetchRecipes(args.searchQuery)
     }
 }

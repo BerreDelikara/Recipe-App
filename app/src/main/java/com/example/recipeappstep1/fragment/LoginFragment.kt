@@ -39,7 +39,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
             if (isLoggedIn) {
-                findNavController().navigate(R.id.categoryListFragment)
+                findNavController().navigate(R.id.searchRecipesFragment)
             } else {
                 Toast.makeText(context, "Invalid credentials", Toast.LENGTH_SHORT).show()
             }
@@ -69,7 +69,7 @@ class LoginFragment : Fragment() {
     private fun reload() {
         viewModel.auth.currentUser!!.reload().addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                findNavController().navigate(R.id.categoryListFragment)
+                findNavController().navigate(R.id.searchRecipesFragment)
                 Toast.makeText(context, "Reload successful!", Toast.LENGTH_SHORT).show()
             } else {
                 Log.e(TAG, "reload", task.exception)
