@@ -35,7 +35,7 @@ class CallApi {
 
     fun parseAllRecipesInCategory(categoryName: String): List<Recipe> {
 
-        var jsonString = makeHttpRequest("filter.php?c=$categoryName")?.toString()
+        val jsonString = makeHttpRequest("filter.php?c=$categoryName")?.toString()
         val recipesArray = JSONObject(jsonString).getJSONArray("meals")
         val recipes = mutableListOf<Recipe>()
 
@@ -57,7 +57,7 @@ class CallApi {
     }
 
     fun parseCategories(): List<Category> {
-        var jsonString = makeHttpRequest("categories.php")?.toString()
+        val jsonString = makeHttpRequest("categories.php")?.toString()
 
         val categoryList = mutableListOf<Category>()
         val categoriesArray = JSONObject(jsonString).getJSONArray("categories")
@@ -76,7 +76,7 @@ class CallApi {
     }
 
     fun parseRecipe(recipeId: Int): Recipe {
-        var jsonString = makeHttpRequest("lookup.php?i=$recipeId")?.toString()
+        val jsonString = makeHttpRequest("lookup.php?i=$recipeId")?.toString()
 
         val recipeArray = JSONObject(jsonString).getJSONArray("meals")
         val recipeObject = recipeArray.getJSONObject(0)
@@ -113,13 +113,13 @@ class CallApi {
     }
 
     fun parseSearchResults(searchQuery: String): List<Recipe> {
-        var jsonString = makeHttpRequest("search.php?s=$searchQuery")?.toString()
+        val jsonString = makeHttpRequest("search.php?s=$searchQuery")?.toString()
 
         val recipes = mutableListOf<Recipe>()
 
         if (jsonString != null) {
             if (jsonString.equals("{\"meals\":null}")) {
-                recipes.add(Recipe(idMeal = -1, strMeal = "No recipes found", strMealThumb = "", ingredients = null, strInstructions = null, strCategory = null))
+                recipes.add(Recipe(idMeal = -1, strMeal = "     No recipes found", strMealThumb = "", ingredients = null, strInstructions = null, strCategory = null))
                 return recipes
             }
         }
