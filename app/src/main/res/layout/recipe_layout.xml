@@ -27,23 +27,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:paddingStart="8dp"
             app:layout_constraintStart_toEndOf="@id/recipeImageView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@{recipe.strMeal}" />
-
-        <TextView
-            android:id="@+id/recipeCategoryTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:paddingStart="8dp"
-            app:layout_constraintStart_toStartOf="@id/recipeTitleTextView"
-            app:layout_constraintTop_toBottomOf="@id/recipeTitleTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{recipe.strCategory}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

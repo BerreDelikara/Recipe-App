@@ -20,8 +20,6 @@ class RecipeListAdapter(
 
     class ItemViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val recipeNameTextView: TextView = item.findViewById(R.id.recipeTitleTextView)
-        private val recipeCategoryTextView: TextView =
-            item.findViewById(R.id.recipeCategoryTextView)
         private val recipeImageView: ImageView = item.findViewById(R.id.recipeImageView)
 
         private val RECIPE_KEY = "RECIPE"
@@ -37,7 +35,6 @@ class RecipeListAdapter(
         fun bind(recipe: Recipe) {
             this.recipe = recipe
             recipeNameTextView.text = recipe.strMeal
-            recipeCategoryTextView.text = recipe.strCategory
 
             Glide.with(itemView.context)
                 .load(recipe.strMealThumb)

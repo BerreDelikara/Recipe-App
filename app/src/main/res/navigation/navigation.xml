@@ -16,6 +16,7 @@
             app:destination="@id/categoryListFragment" />
     </fragment>
 
+
     <fragment
         android:id="@+id/categoryListFragment"
         android:name="com.example.recipeappstep1.fragment.CategoryListFragment"
@@ -43,12 +44,17 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/favoriteRecipesFragment"
+        android:name="com.example.recipeappstep1.fragment.FavoriteRecipesFragment"
+        android:label="Favorite Recipes" />
+
 
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="com.example.recipeappstep1.fragment.RecipeDetailFragment"
 
-        android:label="Recipe Detail"
+        android:label="Recipe Details"
         tools:layout="@layout/fragment_recipe_detail">
         <argument
             android:name="recipeId"
