@@ -5,4 +5,6 @@
     <color name="dark_red">#8B0000</color>"
     <color name="dark_cyan">#008B8B</color>
     <color name="desaturated_red">#AD3434</color>
+    <color name="red">#FF0000</color>
+    <color name="gray">#CCCCCC</color>
 </resources>
