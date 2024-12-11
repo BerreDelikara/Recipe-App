@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         appBarConfiguration = AppBarConfiguration(setOf(R.id.searchRecipesFragment,R.id.categoryListFragment,
-            //R.id.favoriteRecipesFragment, will be implemented later
+         R.id.favoriteRecipesFragment, //will be implemented later
             R.id.loginFragment), drawerLayout)
 
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
@@ -64,10 +64,10 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_recipes -> {
                 navController.navigate(R.id.categoryListFragment)
             }
-//            R.id.nav_favorites -> {
+            R.id.nav_favorites -> {
             // will be implemented later
-//                navController.navigate(R.id.favoriteRecipesFragment)
-//            }
+            navController.navigate(R.id.favoriteRecipesFragment)
+           }
             R.id.nav_logout -> {
                 val viewModel: LoginViewModel by viewModels()
                 viewModel.logout()

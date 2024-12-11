@@ -3,13 +3,19 @@ package com.example.recipeappstep1.viewmodel
 import CallApi
 import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.activity.result.launch
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.recipeappstep1.model.Recipe
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FavoriteRecipesViewModel : ViewModel() {
     val db = Firebase.firestore
@@ -43,17 +49,27 @@ class FavoriteRecipesViewModel : ViewModel() {
     }
 
     fun getFavorites() {
-        var favorites = mutableListOf<String>()
-        LoginViewModel().auth.currentUser?.let {
-            db.collection("favorites").document(it.uid)
+        LoginViewModel().auth.currentUser?.let { user ->
+            db.collection("favorites").document(user.uid)
                 .get()
                 .addOnSuccessListener { result ->
-                    favorites = (result.get("favorites") as? List<String> ?: emptyList()).toMutableList()
+                    val favorites = (result.get("favorites") as? List<String> ?: emptyList())
+                    if (favorites.isNotEmpty()) {
+                        viewModelScope.launch {
+                            val recipes = withContext(Dispatchers.IO) {
+                                CallApi().parseAllRecipeIds(favorites)
+                            }
+                            _recipes.value = recipes.toMutableList()
+                        }
+                    } else {
+                        Log.d(TAG, "No favorites found.")
+                    }
                 }
                 .addOnFailureListener { exception ->
                     Log.w(TAG, "Error getting documents.", exception)
                 }
         }
-        _recipes.value = CallApi().parseAllRecipeIds(favorites).toMutableList()
     }
+
+
 }
