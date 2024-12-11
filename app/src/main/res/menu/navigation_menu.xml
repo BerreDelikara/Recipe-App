@@ -11,9 +11,9 @@
         android:id="@+id/nav_recipes"
         android:title="Recipe Categories" />
 
-<!--    <item-->
-<!--        android:id="@+id/nav_favorites"-->
-<!--        android:title="Favorites" />-->
+   <item
+     android:id="@+id/nav_favorites"
+       android:title="Favorites" />
 
     <item
         android:id="@+id/nav_logout"

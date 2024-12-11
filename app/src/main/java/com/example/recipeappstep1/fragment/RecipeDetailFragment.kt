@@ -11,14 +11,16 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.recipeappstep1.R
 import com.example.recipeappstep1.databinding.FragmentRecipeDetailBinding
+import com.example.recipeappstep1.viewmodel.FavoriteRecipesViewModel
 import com.example.recipeappstep1.viewmodel.RecipeViewModel
 
 
 class RecipeDetailFragment : Fragment() {
+    private val favoriteRecipesViewModel: FavoriteRecipesViewModel by viewModels()
     private val viewModel: RecipeViewModel by viewModels()
     private lateinit var binding: FragmentRecipeDetailBinding
     private val args: RecipeDetailFragmentArgs by navArgs()
-
+    private var isFavorite = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +44,20 @@ class RecipeDetailFragment : Fragment() {
                 Glide.with(this)
                     .load(it.strMealThumb)
                     .into(binding.recipeImageView)
+
+
+                favoriteRecipesViewModel.getFavorites()
+                favoriteRecipesViewModel.recipes.observe(viewLifecycleOwner) { favorites ->
+                    isFavorite = favorites.any { it.idMeal == recipe.idMeal }
+                    binding.favoriteToggle.isChecked = isFavorite
+                }
+        }
+            binding.favoriteToggle.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    favoriteRecipesViewModel.saveFavorite(args.recipeId.toString())
+                } else {
+                    favoriteRecipesViewModel.removeFavorite(args.recipeId.toString())
+                }
             }
         }
     }
