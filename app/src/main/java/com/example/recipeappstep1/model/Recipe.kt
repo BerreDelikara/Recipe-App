@@ -20,4 +20,17 @@ class Recipe(
         return ingredientsString
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Recipe) return false
+
+        return strMeal == other.strMeal &&
+                strMealThumb == other.strMealThumb &&
+                idMeal == other.idMeal &&
+                strCategory == other.strCategory &&
+                strInstructions == other.strInstructions &&
+                ingredients == other.ingredients
+    }
+
+
 }

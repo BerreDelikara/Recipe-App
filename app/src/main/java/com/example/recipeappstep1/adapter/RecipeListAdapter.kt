@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.recipeappstep1.R
@@ -16,9 +18,9 @@ import com.example.recipeappstep1.model.Recipe
 class RecipeListAdapter(
     private val recipes: List<Recipe>,
     private val onRecipeClick: (Recipe) -> Unit
-) : RecyclerView.Adapter<RecipeListAdapter.ItemViewHolder>() {
+) : ListAdapter<Recipe, RecipeListAdapter.RecipeViewHolder>(RecipeDiffCallback()) {
 
-    class ItemViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+    class RecipeViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val recipeNameTextView: TextView = item.findViewById(R.id.recipeTitleTextView)
         private val recipeImageView: ImageView = item.findViewById(R.id.recipeImageView)
 
@@ -42,13 +44,13 @@ class RecipeListAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val layout =
             LayoutInflater.from(parent.context).inflate(R.layout.recipe_layout, parent, false)
-        return ItemViewHolder(layout)
+        return RecipeViewHolder(layout)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val recipe = recipes[position]
         holder.bind(recipe)
 
@@ -61,4 +63,15 @@ class RecipeListAdapter(
         return recipes.size
     }
 
+}
+class RecipeDiffCallback : DiffUtil.ItemCallback<Recipe>() {
+    override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
+        return oldItem.idMeal == newItem.idMeal
+        //or is it oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
+        return oldItem == newItem
+        // equals in recipe overriden
+    }
 }

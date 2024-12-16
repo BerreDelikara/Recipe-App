@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.recipeappstep1.R
@@ -15,7 +17,7 @@ import com.example.recipeappstep1.model.Category
 class CategoryListAdapter(
     private val categories: List<Category>,
     private val onCategoryClick: (Category) -> Unit
-) : RecyclerView.Adapter<CategoryListAdapter.CategoryViewHolder>() {
+) : ListAdapter<Category, CategoryListAdapter.CategoryViewHolder>(CategoryDiffCallback()) {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val categoryTextView: TextView = itemView.findViewById(R.id.categoryNameTextView)
@@ -57,5 +59,15 @@ class CategoryListAdapter(
 
     override fun getItemCount(): Int {
         return categories.size
+    }
+}
+class CategoryDiffCallback : DiffUtil.ItemCallback<Category>() {
+    override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
+        return oldItem.strCategory == newItem.strCategory
+        //or is it oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
+        return oldItem == newItem
     }
 }
