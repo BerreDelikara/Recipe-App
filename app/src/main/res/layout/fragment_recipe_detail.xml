@@ -27,7 +27,8 @@
                 android:textSize="23sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/favoriteToggle" />
             <ToggleButton
                 android:id="@+id/favoriteToggle"
                 android:layout_width="50dp"

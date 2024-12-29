@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
         <variable
             name="recipe"
             type="com.example.recipeappstep1.model.Recipe" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true">
 
-        <ImageView
-            android:id="@+id/recipeImageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/recipeTitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:textSize="16sp"
-            android:paddingStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/recipeImageView"
-            app:layout_constraintTop_toTopOf="@id/recipeImageView"
-            app:layout_constraintBottom_toBottomOf="@id/recipeImageView"
-            android:text="@{recipe.strMeal}" />
+            <ImageView
+                android:id="@+id/recipeImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/recipeTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:paddingStart="8dp"
+                android:text="@{recipe.strMeal}"
+                app:layout_constraintStart_toEndOf="@id/recipeImageView"
+                app:layout_constraintTop_toTopOf="@id/recipeImageView"
+                app:layout_constraintBottom_toBottomOf="@id/recipeImageView"
+
+                android:breakStrategy="simple" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 </layout>
