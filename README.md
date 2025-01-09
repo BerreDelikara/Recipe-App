@@ -9,6 +9,7 @@ Simply build the app on Android Studio and install it on a compatible android de
 
 ## Contributions of each member
 Deniz Nal: Network connection logic, navigation logic, fragment logic
+
 Berre Delikara: UI design and implementation, adapter implementation
 
 
