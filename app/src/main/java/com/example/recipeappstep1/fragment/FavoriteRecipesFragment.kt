@@ -19,7 +19,6 @@ class FavoriteRecipesFragment : Fragment() {
     private val favoriteRecipesViewModel: FavoriteRecipesViewModel by viewModels()
     private lateinit var binding: FragmentFavoriteRecipesBinding
 
-    // favorites will be implemented in step2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

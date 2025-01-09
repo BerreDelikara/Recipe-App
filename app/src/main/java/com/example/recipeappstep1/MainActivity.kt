@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.categoryListFragment)
             }
             R.id.nav_favorites -> {
-            // will be implemented later
+
             navController.navigate(R.id.favoriteRecipesFragment)
            }
             R.id.nav_logout -> {
