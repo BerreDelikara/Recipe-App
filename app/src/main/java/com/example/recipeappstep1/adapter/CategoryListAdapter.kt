@@ -64,7 +64,6 @@ class CategoryListAdapter(
 class CategoryDiffCallback : DiffUtil.ItemCallback<Category>() {
     override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
         return oldItem.strCategory == newItem.strCategory
-        //or is it oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {

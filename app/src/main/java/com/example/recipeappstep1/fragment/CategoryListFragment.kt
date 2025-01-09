@@ -29,6 +29,9 @@ class CategoryListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+
         viewModel.categories.observe(viewLifecycleOwner) { categories ->
             val adapter = categories?.let {
                 CategoryListAdapter(it) { selectedCategory ->

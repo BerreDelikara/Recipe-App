@@ -67,7 +67,6 @@ class RecipeListAdapter(
 class RecipeDiffCallback : DiffUtil.ItemCallback<Recipe>() {
     override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
         return oldItem.idMeal == newItem.idMeal
-        //or is it oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
